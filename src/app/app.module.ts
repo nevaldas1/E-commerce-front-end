@@ -8,7 +8,7 @@ import { ProductService } from './services/product.service';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  {path: 'category/id', component: ProductListComponent},
+  {path: 'category/:id', component: ProductListComponent},
   {path: 'category', component: ProductListComponent},
   {path: 'products', component: ProductListComponent},
   {path: '', redirectTo: '/products', pathMatch: 'full'},
