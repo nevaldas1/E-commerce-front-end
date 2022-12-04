@@ -12,9 +12,11 @@
                             <img src="{{tempProduct.imageUrl}}" class="img-responsive">
                         </a>
 
-                        <a routerLink="/products/{{ tempProduct.id }}">
-                            <h1>{{tempProduct.name}}</h1>
-                        </a>
+                        <div>
+                            <a routerLink="/products/{{ tempProduct.id }}">
+                                <h1>{{tempProduct.name}}</h1>
+                            </a>
+                        </div>
 
                         <div class="price">{{tempProduct.unitPrice | currency: 'EUR' }}</div>
                         <button (click)="addToCart(tempProduct)" class="btn btn-primary btn-sm">Add to cart</button>
@@ -34,14 +36,10 @@
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-9" styles="padding-left: 30%">
-                               
-                                <ngb-pagination [(page)]="thePageNumber"
-                                                [pageSize]="thePageSize"
-                                                [collectionSize]="theTotalElements"
-                                                [maxSize]="5"
-                                                [boundaryLinks]="true"
-                                                [rotate]="true"
-                                                (pageChange)="listProducts()">
+
+                                <ngb-pagination [(page)]="thePageNumber" [pageSize]="thePageSize"
+                                    [collectionSize]="theTotalElements" [maxSize]="5" [boundaryLinks]="true"
+                                    [rotate]="true" (pageChange)="listProducts()">
                                 </ngb-pagination>
 
                             </div>
@@ -56,8 +54,8 @@
                                     <option>20</option>
                                     <option>50</option>
                                 </select>
-                            
-                            
+
+
                             </div>
                         </div>
                     </div>
