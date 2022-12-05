@@ -14,8 +14,9 @@
                             <div class="input-space">
                                 <input formControlName="firstName" type="text">
 
-                                <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger mt-1">
-                                    
+                                <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+                                    class="alert alert-danger mt-1">
+
                                     <div *ngIf="firstName.errors.required">
                                         First Name is required
                                     </div>
@@ -25,6 +26,7 @@
                                     </div>
 
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -34,6 +36,20 @@
                         <div class="col-md-9">
                             <div class="input-space">
                                 <input formControlName="lastName" type="text">
+
+                                <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+                                    class="alert alert-danger mt-1">
+
+                                    <div *ngIf="lastName.errors.required">
+                                        Last Name is required
+                                    </div>
+
+                                    <div *ngIf="lastName.errors.minlength">
+                                        Last Name must be at least 2 characters long
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -43,6 +59,19 @@
                         <div class="col-md-9">
                             <div class="input-space">
                                 <input formControlName="email" type="text">
+
+                                <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                                    class="alert alert-danger mt-1">
+
+                                    <div *ngIf="email.errors.required">
+                                        Email is required
+                                    </div>
+
+                                    <div *ngIf="email.errors.pattern">
+                                        Email must be a valid email address format
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -58,7 +87,8 @@
                         <div class="col-md-9">
                             <div class="input-space">
                                 <select formControlName="country" (change)="getStates('shippingAddress')">
-                                    <option *ngFor="let country of countries" [ngValue]="country">  <!--[ngValue] keeps reference for country object to use it later for country code-->
+                                    <option *ngFor="let country of countries" [ngValue]="country">
+                                        <!--[ngValue] keeps reference for country object to use it later for country code-->
                                         {{ country.name }}
                                     </option>
                                 </select>
@@ -126,7 +156,8 @@
                         <div class="col-md-9">
                             <div class="input-space">
                                 <select formControlName="country" (change)="getStates('billingAddress')">
-                                    <option *ngFor="let country of countries" [ngValue]="country">  <!--[ngValue] keeps reference for country object to use it later for country code-->
+                                    <option *ngFor="let country of countries" [ngValue]="country">
+                                        <!--[ngValue] keeps reference for country object to use it later for country code-->
                                         {{ country.name }}
                                     </option>
                                 </select>
