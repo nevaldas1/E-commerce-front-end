@@ -83,11 +83,34 @@ export class CheckoutComponent implements OnInit{
   }
 
 
-
   onSubmit() {
     console.log("Handling the submit button");
     console.log(this.checkoutFormGroup.get('customer').value);
     console.log("Customer's name is " + this.checkoutFormGroup.get('customer').value.firstName);
+  }
+
+
+  handleYearsAndMonths() {
+    const creditCardFormGroup = this.checkoutFormGroup.get('creditCard');
+    
+    const currentYear: number = new Date().getFullYear();
+    const selectedYear: number = Number(creditCardFormGroup.value.expirationYear);
+
+    let startMonth: number;
+
+    if(currentYear === selectedYear) {
+      startMonth = new Date().getMonth() +1;
+    }
+    else {
+      startMonth = 1;
+    }
+
+    this.checkoutFormService.getCreditCardMonths(startMonth).subscribe(
+      data => {
+        console.log("Retrieved credit card months: " + JSON.stringify(data));
+        this.creditCardMonths = data;
+      }
+    )
   }
   
 }
