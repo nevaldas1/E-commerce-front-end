@@ -9,5 +9,5 @@ export class Purchase {
     shippingAddress: Address;
     billingAddress: Address;
     order: Order;
-    orderItem: OrderItem[];
+    orderItems: OrderItem[];
 }
