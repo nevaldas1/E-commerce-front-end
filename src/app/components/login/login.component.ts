@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { InjectSetupWrapper } from '@angular/core/testing';
 import { OKTA_AUTH } from '@okta/okta-angular';
-import OktaAuth from '@okta/okta-auth-js';
+import { OktaAuth } from '@okta/okta-auth-js';
 import OktaSignIn from '@okta/okta-signin-widget';
 import myAppConfig from 'src/app/config/my-app-config';
 
