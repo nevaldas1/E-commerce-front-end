@@ -22,10 +22,11 @@
     "@ng-bootstrap/ng-bootstrap": "^13.1.1",
     "@okta/okta-angular": "^6.0.0",
     "@okta/okta-auth-js": "^7.1.1",
-    "@okta/okta-signin-widget": "^7.1.0",
+    "@okta/okta-signin-widget": "^6.2.0",
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.2.3",
     "rxjs": "~7.5.0",
+    "stripe": "^8.179.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },
