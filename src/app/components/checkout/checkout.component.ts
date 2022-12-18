@@ -254,16 +254,56 @@ export class CheckoutComponent implements OnInit{
     purchase.order = order;
     purchase.orderItems = orderItems;
 
-    this.checkoutService.placeOrder(purchase).subscribe({
-        next: response => {
-          alert(`Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`);
-          this.resetCart();
-        },
-        error: error => {
-          alert(`There was an error: ${error.message}`);
+    this.paymentInfo.amount = this.totalPrice * 100;
+    this.paymentInfo.currency = "EUR";
+
+
+    // Make REST API calls for payment processing 302
+    if (!this.checkoutFormGroup.invalid && this.displayError.textContext === "") {
+      // Create payment intent
+      this.checkoutService.createPaymentIntent(this.paymentInfo).subscribe(
+        (paymentIntentResponse) => {
+          // Confirm card payment
+          this.stripe.confirmCardPayment(paymentIntentResponse.client_secret,
+            {
+              payment_method: {
+                card: this.cardElement
+              }
+            }, {handleActions: false })
+            .then((result: any) => {
+              if(result.error) {
+                alert(`There was an error: ${result.error.message}`);
+              } else {
+                // Place the order
+                this.checkoutService.placeOrder(purchase).subscribe({
+                  next: (response: any) => {
+                    alert(`Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`);
+                    this.resetCart();
+                  },
+                  error: (err: any) => {
+                    alert(`There was an error: ${err.message}`);
+                  }
+                })
+              }
+            });
         }
-      }
-    );
+      );
+    } else {
+      this.checkoutFormGroup.markAllAsTouched();
+      return;
+    }
+
+
+    // this.checkoutService.placeOrder(purchase).subscribe({
+    //     next: response => {
+    //       alert(`Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`);
+    //       this.resetCart();
+    //     },
+    //     error: error => {
+    //       alert(`There was an error: ${error.message}`);
+    //     }
+    //   }
+    // );
 
   }
 
