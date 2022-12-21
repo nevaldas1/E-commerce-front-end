@@ -80,36 +80,8 @@ export class CheckoutComponent implements OnInit{
         zipCode: new FormControl ('', [Validators.required, Validators.minLength(2), CheckoutValidators.notOnlyWhitespace])
       }),
       creditCard: this.formBuilder.group({
-        /*
-        cardType: new FormControl ('', [Validators.required]),
-        nameOnCard: new FormControl ('', [Validators.required, Validators.minLength(2), CheckoutValidators.notOnlyWhitespace]),
-        cardNumber: new FormControl ('', [Validators.required, Validators.pattern('[0-9]{16}')]),
-        securityCode: new FormControl ('', [Validators.required, Validators.pattern('[0-9]{3}')]),
-        expirationMonth: [''],
-        expirationYear: ['']
-        */
       }),
     });
-
-
-    /*
-    this.checkoutFormService.getCreditCardYears().subscribe(
-      data => {
-        console.log("Retrieved credit card years: " + JSON.stringify(data));
-        this.creditCardYears = data;
-      }
-    );
-
-
-    const startMonth: number = new Date().getMonth() + 1;
-    console.log("startMonth: " + startMonth);
-    this.checkoutFormService.getCreditCardMonths(startMonth).subscribe(
-      data => {
-        console.log("Retrieved credit card months: " + JSON.stringify(data));
-        this.creditCardMonths = data;
-      }
-    );
-      */
 
 
     this.checkoutFormService.getCountries().subscribe(
@@ -178,7 +150,6 @@ export class CheckoutComponent implements OnInit{
 
 
 
-
   getStates(formGroupName: string) {
     const formGroup = this.checkoutFormGroup.get(formGroupName);
 
@@ -228,12 +199,6 @@ export class CheckoutComponent implements OnInit{
 
     const cartItems = this.cartService.cartItems;
 
-    /*
-    let orderItems: OrderItem[] = [];
-    for (let i=0; i<cartItems.length; i++) {
-      orderItems[i] = new OrderItem(cartItems[i]);
-    }
-    */
 
     let orderItems: OrderItem[] = cartItems.map(tempCartItem => new OrderItem(tempCartItem));
 
@@ -310,19 +275,6 @@ export class CheckoutComponent implements OnInit{
       this.checkoutFormGroup.markAllAsTouched();
       return;
     }
-
-
-    // this.checkoutService.placeOrder(purchase).subscribe({
-    //     next: response => {
-    //       alert(`Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`);
-    //       this.resetCart();
-    //     },
-    //     error: error => {
-    //       alert(`There was an error: ${error.message}`);
-    //     }
-    //   }
-    // );
-
   }
 
 
